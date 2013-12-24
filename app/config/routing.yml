@@ -1,0 +1,4 @@
+don_car_pdi:
+    resource: "@DonCarPDIBundle/Resources/config/routing.yml"
+    prefix:   /
+
