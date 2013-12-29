@@ -1,3 +1,7 @@
 don_car_pdi_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
+    defaults: { _controller: DonCarPDIBundle:Default:index }
+
+pdi_lista:
+    pattern: /lista
     defaults: { _controller: DonCarPDIBundle:Default:index }

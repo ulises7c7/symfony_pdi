@@ -135,9 +135,21 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // don_car_pdi_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'don_car_pdi_homepage')), array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::indexAction',));
+        if (0 === strpos($pathinfo, '/pdi')) {
+            // don_car_pdi_homepage
+            if (rtrim($pathinfo, '/') === '/pdi') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'don_car_pdi_homepage');
+                }
+
+                return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::indexAction',  '_route' => 'don_car_pdi_homepage',);
+            }
+
+            // pdi_lista
+            if ($pathinfo === '/pdi/lista') {
+                return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::indexAction',  '_route' => 'pdi_lista',);
+            }
+
         }
 
         // _welcome
