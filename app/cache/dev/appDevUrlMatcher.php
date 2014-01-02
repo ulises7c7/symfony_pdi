@@ -136,18 +136,36 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/pdi')) {
-            // don_car_pdi_homepage
+            // pdi_index
             if (rtrim($pathinfo, '/') === '/pdi') {
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'don_car_pdi_homepage');
+                    return $this->redirect($pathinfo.'/', 'pdi_index');
                 }
 
-                return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::indexAction',  '_route' => 'don_car_pdi_homepage',);
+                return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::indexAction',  '_route' => 'pdi_index',);
             }
 
             // pdi_lista
             if ($pathinfo === '/pdi/lista') {
                 return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::indexAction',  '_route' => 'pdi_lista',);
+            }
+
+            // pdi_insertar
+            if (0 === strpos($pathinfo, '/pdi/insertar') && preg_match('#^/pdi/insertar/(?P<username>[^/]++)/(?P<nombre>[^/]++)/(?P<apellido>[^/]++)/(?P<password>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'pdi_insertar')), array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::insertarAction',));
+            }
+
+            if (0 === strpos($pathinfo, '/pdi/alta')) {
+                // pdi_alta
+                if ($pathinfo === '/pdi/alta') {
+                    return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::altaAction',  '_route' => 'pdi_alta',);
+                }
+
+                // pdi_altaf
+                if ($pathinfo === '/pdi/altaf') {
+                    return array (  '_controller' => 'DonCar\\PDIBundle\\Controller\\DefaultController::altafAction',  '_route' => 'pdi_altaf',);
+                }
+
             }
 
         }

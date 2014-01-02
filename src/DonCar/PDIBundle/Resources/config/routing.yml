@@ -1,7 +1,20 @@
-don_car_pdi_homepage:
+pdi_index:
     pattern:  /
     defaults: { _controller: DonCarPDIBundle:Default:index }
 
 pdi_lista:
     pattern: /lista
     defaults: { _controller: DonCarPDIBundle:Default:index }
+
+pdi_insertar:
+    pattern: /insertar/{username}/{nombre}/{apellido}/{password}
+    defaults: { _controller: DonCarPDIBundle:Default:insertar }
+
+
+pdi_alta:
+    pattern: /alta
+    defaults: { _controller: DonCarPDIBundle:Default:alta }
+
+pdi_altaf:
+    pattern: /altaf
+    defaults: { _controller: DonCarPDIBundle:Default:altaf }
